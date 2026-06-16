@@ -68,7 +68,7 @@ dependencies {
 
     // Navigation Component
     val nav_version = "2.9.8"
-    implementation("androidx.navigation:navigation-compose:${nav_version}")
+    implementation("androidx.navigation:navigation-fragment:${nav_version}")
     implementation("androidx.navigation:navigation-ui:${nav_version}")
 
     // ViewModel + LiveData
