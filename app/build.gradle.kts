@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -45,6 +47,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
@@ -52,10 +55,14 @@ dependencies {
     // Hilt — Dependency Injection
     implementation("com.google.dagger:hilt-android:2.57.1")
     ksp("com.google.dagger:hilt-android-compiler:2.57.1")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.3.0")
+    implementation("androidx.hilt:hilt-work:1.3.0")
+    ksp("androidx.hilt:hilt-compiler:1.3.0")
 
     // Retrofit — API çağrıları
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.4.0")
 
     // Room — Yerel veritabanı
     val room_version = "2.8.4"
@@ -63,7 +70,7 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:${room_version}")
 
-    // Coroutines + Flow
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 
     // Navigation Component
@@ -72,14 +79,14 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:${nav_version}")
 
     // ViewModel + LiveData
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    val lifecycle_version = "2.10.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle_version}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle_version}")
 
     // DataStore — Ayarlar için
     implementation("androidx.datastore:datastore-preferences:1.2.1")
 
     // WorkManager — Arka plan bildirim
     implementation("androidx.work:work-runtime-ktx:2.11.2")
-    implementation("androidx.hilt:hilt-work:1.0.0")
-    ksp("androidx.hilt:hilt-compiler:1.3.0")
 }
