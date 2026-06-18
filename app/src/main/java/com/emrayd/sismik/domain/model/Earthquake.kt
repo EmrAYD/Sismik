@@ -14,7 +14,11 @@ data class Earthquake(
     val latitude: Double,
     val longitude: Double,
     val closestCity: String,
-    val closestCityDistance: Double,
+    // Kilometre cinsinden (API metre döndürüyor, mapper'da çevriliyor)
+    val closestCityDistanceKm: Double,
     val dateTime: String,
+    // API'nin döndürdüğü Unix epoch timestamp (saniye). Sıralama ve tarih biçimlendirme
+    // için dateTime string'inden çok daha güvenilir; gerçek API yanıtıyla doğrulandı.
+    val epochSeconds: Long,
     val provider: String
 )
