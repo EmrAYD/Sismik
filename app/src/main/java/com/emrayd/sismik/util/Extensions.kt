@@ -2,6 +2,7 @@ package com.emrayd.sismik.util
 
 import android.graphics.Color
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 /**
@@ -14,15 +15,21 @@ import java.util.TimeZone
  * o formatı listenin en başına alarak performansı iyileştirebilirsin;
  * diğerlerini silmen gerekmez, zarar vermezler.
  */
+
+private val READABLE_OUTPUT_FORMAT = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale("tr"))
+
+fun Long.toReadableDate(): String {
+    if (this <= 0L) return "-"
+    return READABLE_OUTPUT_FORMAT.format(Date(this * 1000L))
+}
+
 private val POSSIBLE_DATE_FORMATS = listOf(
+    "yyyy-MM-dd HH:mm:ss",
     "yyyy.MM.dd HH:mm:ss",
     "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
     "yyyy-MM-dd'T'HH:mm:ss'Z'",
-    "yyyy-MM-dd HH:mm:ss",
     "yyyy-MM-dd'T'HH:mm:ssXXX"
 )
-
-private val READABLE_OUTPUT_FORMAT = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale("tr"))
 
 /**
  * API'den gelen ham tarih string'ini "gg.aa.yyyy ss:dd" formatına çevirir.
