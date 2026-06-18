@@ -10,8 +10,7 @@ import com.emrayd.sismik.domain.model.Earthquake
  */
 @Entity(tableName = "earthquakes")
 data class EarthquakeEntity(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey val id: String,
     val title: String,
     val magnitude: Double,
     val depth: Double,
@@ -19,6 +18,7 @@ data class EarthquakeEntity(
     val longitude: Double,
     val closestCity: String,
     val closestCityDistanceKm: Double,
+    val closestCities: List<String>,   // StringListConverter ile JSON'a çevrilir
     val dateTime: String,
     val epochSeconds: Long,
     val provider: String,
@@ -30,14 +30,14 @@ data class EarthquakeEntity(
  * cachedAt domain modelinde yer almaz, çünkü UI'ı ilgilendirmeyen bir altyapı detayıdır.
  */
 fun EarthquakeEntity.toDomain(): Earthquake = Earthquake(
-    id = id,
-    title = title,
+    id = id, title = title,
     magnitude = magnitude,
     depth = depth,
     latitude = latitude,
     longitude = longitude,
     closestCity = closestCity,
     closestCityDistanceKm = closestCityDistanceKm,
+    closestCities = closestCities,
     dateTime = dateTime,
     epochSeconds = epochSeconds,
     provider = provider

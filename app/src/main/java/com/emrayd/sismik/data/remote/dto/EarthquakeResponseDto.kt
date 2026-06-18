@@ -33,16 +33,17 @@ data class EarthquakeItemDto(
 
 data class GeoJsonDto(
     val type: String? = null,
-    val coordinates: List<Double>? = null
+    val coordinates: List<Double>? = null  // [longitude, latitude] — GeoJSON standardı
 )
 
 data class LocationPropertiesDto(
-    @SerializedName("closestCity") val closestCity: ClosestCityDto? = null
+    @SerializedName("closestCity") val closestCity: ClosestCityDto? = null,
+    @SerializedName("closestCities") val closestCities: List<ClosestCityDto>? = null
 )
 
 data class ClosestCityDto(
     val name: String? = null,
-    val distance: Double? = null
+    val distance: Double? = null   // METRE cinsinden — mapper'da km'ye çevriliyor
 )
 
 /**
@@ -50,21 +51,22 @@ data class ClosestCityDto(
  * formata çevirir; eksik/null alanlar için güvenli varsayılan değerler kullanılır.
  */
 fun EarthquakeItemDto.toEntity(): EarthquakeEntity {
-    val longitude = geojson?.coordinates?.getOrNull(0) ?: 0.0
-    val latitude = geojson?.coordinates?.getOrNull(1) ?: 0.0
+    val longitude  = geojson?.coordinates?.getOrNull(0) ?: 0.0
+    val latitude   = geojson?.coordinates?.getOrNull(1) ?: 0.0
     val distanceKm = (locationProperties?.closestCity?.distance ?: 0.0) / 1000.0
+    val cityNames  = locationProperties?.closestCities
+        ?.mapNotNull { it.name?.takeIf { name -> name.isNotBlank() } }
+        ?: emptyList()
 
     return EarthquakeEntity(
         id = earthquakeId ?: dateTime ?: System.currentTimeMillis().toString(),
         title = title ?: "Bilinmeyen Konum",
-        magnitude = mag ?: 0.0,
-        depth = depth ?: 0.0,
-        latitude = latitude,
-        longitude = longitude,
+        magnitude = mag ?: 0.0, depth = depth ?: 0.0,
+        latitude = latitude, longitude = longitude,
         closestCity = locationProperties?.closestCity?.name ?: "-",
         closestCityDistanceKm = distanceKm,
-        dateTime = dateTime ?: "",
-        epochSeconds = createdAt ?: 0L,
+        closestCities = cityNames,
+        dateTime = dateTime ?: "", epochSeconds = createdAt ?: 0L,
         provider = provider ?: "-"
     )
 }
