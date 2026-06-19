@@ -16,9 +16,12 @@ data class Earthquake(
     val closestCity: String,
     // Kilometre cinsinden (API metre döndürüyor, mapper'da çevriliyor)
     val closestCityDistanceKm: Double,
+    // API'nin döndürdüğü en yakın 5 şehrin adları (mesafeye göre sıralı).
+    // Şehrim ekranında kullanıcının seçtiği şehrin bu listede olup olmadığına göre
+    // filtreleme yapılır; böylece sadece "en yakın şehir" değil, yakın çevresindeki
+    // şehirler de kapsanır.
+    val closestCities: List<String>,
     val dateTime: String,
-    // API'nin döndürdüğü Unix epoch timestamp (saniye). Sıralama ve tarih biçimlendirme
-    // için dateTime string'inden çok daha güvenilir; gerçek API yanıtıyla doğrulandı.
     val epochSeconds: Long,
     val provider: String
 )
