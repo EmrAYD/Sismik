@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="sismik_primary">#C62828</color>
+    <color name="sismik_primary_dark">#8E0000</color>
+    <color name="sismik_primary_light">#FF5F52</color>
+    <color name="sismik_surface">#FAFAFA</color>
+    <color name="sismik_background">#F5F5F5</color>
+    <color name="sismik_on_surface">#212121</color>
+    <color name="sismik_on_surface_variant">#757575</color>
+
+    <color name="magnitude_high">#F44336</color>
+    <color name="magnitude_medium">#FF9800</color>
+    <color name="magnitude_low">#FFC107</color>
+    <color name="magnitude_minimal">#4CAF50</color>
+    <color name="magnitude_text_dark">#212121</color>
+    <color name="magnitude_text_light">#FFFFFF</color>
+
+    <color name="whistle_button_idle">#C62828</color>
+    <color name="whistle_button_active">#B71C1C</color>
+    <color name="whistle_ripple">#80EF9A9A</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="card_elevation_overlay">#0A000000</color>
 </resources>

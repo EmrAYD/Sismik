@@ -1,9 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Sismik" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<resources>
+    <style name="Theme.Sismik" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/sismik_primary</item>
+        <item name="colorPrimaryDark">@color/sismik_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/sismik_primary_dark</item>
+        <item name="colorSurface">@color/sismik_surface</item>
+        <item name="android:colorBackground">@color/sismik_background</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/sismik_on_surface</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/sismik_primary_dark</item>
     </style>
 
-    <style name="Theme.Sismik" parent="Base.Theme.Sismik" />
+    <style name="Widget.Sismik.WhistleButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/whistle_button_idle</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">100dp</item>
+        <item name="android:minWidth">180dp</item>
+        <item name="android:minHeight">180dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="rippleColor">@color/whistle_ripple</item>
+    </style>
 </resources>

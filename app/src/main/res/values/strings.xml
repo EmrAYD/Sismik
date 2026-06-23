@@ -1,4 +1,77 @@
 <resources>
     <string name="app_name">Sismik</string>
-    <string name="title_activity_maps">MapsActivity</string>
+
+    <!-- ── Bottom Navigation ── -->
+    <string name="nav_my_city">Şehrim</string>
+    <string name="nav_feed">Akış</string>
+    <string name="nav_info">Bilgi</string>
+    <string name="nav_whistle">Düdük</string>
+    <string name="nav_settings">Ayarlar</string>
+
+    <!-- ── Ortak format stringleri ── -->
+    <string name="format_closest_city">%1$s (%2$d km)</string>
+    <string name="format_depth">Derinlik: %1$.1f km</string>
+    <string name="format_coordinates">%1$.4f° K, %2$.4f° D</string>
+
+    <!-- ── Şehrim Ekranı ── -->
+    <string name="my_city_no_city_title">Henüz şehrin seçilmedi</string>
+    <string name="my_city_no_city_message">Yaşadığın şehre göre deprem takibi yapabilmek için Ayarlar\'dan şehrini seç.</string>
+    <string name="my_city_no_earthquake_title">Deprem kaydı yok</string>
+    <string name="my_city_no_earthquake_message">Son 24 saatte %1$s için kayıtlı deprem bulunmuyor.</string>
+    <string name="my_city_button_select_city">Şehrimi Seç</string>
+    <string name="my_city_toolbar_title">Şehrim</string>
+
+    <!-- ── Akış Ekranı ── -->
+    <string name="feed_toolbar_title">Deprem Akışı</string>
+    <string name="feed_search_hint">Şehir ara…</string>
+    <string name="feed_sort_magnitude_desc">Büyükten Küçüğe</string>
+    <string name="feed_sort_magnitude_asc">Küçükten Büyüğe</string>
+    <string name="feed_sort_date_desc">En Yeni</string>
+    <string name="feed_empty">Aramanızla eşleşen deprem bulunamadı.</string>
+
+    <!-- ── Detay Ekranı ── -->
+    <string name="detail_toolbar_title">Deprem Detayı</string>
+    <string name="detail_label_magnitude">Büyüklük</string>
+    <string name="detail_label_depth">Derinlik</string>
+    <string name="detail_label_closest_city">En Yakın Şehir</string>
+    <string name="detail_label_datetime">Tarih / Saat</string>
+    <string name="detail_label_coordinates">Koordinatlar</string>
+
+    <!-- ── Düdük Ekranı ── -->
+    <string name="whistle_toolbar_title">Acil Düdük</string>
+    <string name="whistle_description">Enkaz altında veya acil bir durumda kurtarma ekiplerine sinyal vermek için butona basılı tut.</string>
+    <string name="whistle_button_label">Basılı Tut</string>
+    <string name="whistle_status_idle">Düdük hazır</string>
+    <string name="whistle_status_playing">🔊 Çalıyor…</string>
+    <string name="whistle_warning">⚠ Yüksek ses seviyesi. Kulaklıkla kullanmayın.</string>
+
+    <!-- ── Bilgi Ekranı ── -->
+    <string name="info_toolbar_title">Deprem Bilgisi</string>
+    <string name="info_header_before">📦 Depremden Önce</string>
+    <string name="info_content_before">• Acil durum çantanızı hazırlayın (su, gıda, ilaç, fener, pil, düdük, ilk yardım kiti, nüfus cüzdanı fotokopisi).\n• Ev/iş yeri için güvenli toplanma noktası belirleyin ve aile üyeleriyle paylaşın.\n• Doğal gaz, su ve elektrik vanalarının yerini öğrenin; nasıl kapanacağını bilin.\n• Ağır mobilyaları duvara sabitleyin; yüksekteki nesneleri aşağı alın.\n• Yapı güvenliği konusunda şüpheleriniz varsa uzman görüşü alın.</string>
+    <string name="info_header_during">🪨 Deprem Sırasında</string>
+    <string name="info_content_during">• ÇÖK – KAPAN – TUTUN: yere çök, sağlam bir masanın altına gir, baş ve boynunu kolla koru, masaya sıkıca tutun.\n• Masa yoksa bir iç duvara yakın, dizlerin üstünde eğil ve başını kolla kapat.\n• Asansöre kesinlikle binme. Merdivenlerden da koşma.\n• Pencere, dış duvar ve devrilecek eşyalardan uzak dur.\n• Bina içindeysen dışarı çıkmaya çalışma; sarsıntı bitene kadar yerinizde kal.\n• Dışarıdaysan binalardan, elektrik direklerinden ve ağaçlardan uzak açık alana git.</string>
+    <string name="info_header_after">✅ Depremden Sonra</string>
+    <string name="info_content_after">• Artçı sarsıntılara hazırlıklı ol; tekrar sarsıntı olabilir.\n• Binayı terk etmeden önce gaz kaçağı olup olmadığını kontrol et (koku varsa priz/anahtar kullanma).\n• Çatlak veya hasar varsa binaya girme; yetkili onay almadan içeri girme.\n• Radyo veya resmi kaynaklardan bilgi takip et.\n• Gereksiz telefon trafiğini artırmamak için kısa mesaj tercih et.\n• Yaralılara yardım et; kendi güvenliğinden emin olduktan sonra yardım talebi ilet.</string>
+    <string name="info_header_trapped">🆘 Enkaz Altındaysan</string>
+    <string name="info_content_trapped">• Panikle. Derin nefes al, sakin kal.\n• Kibrit veya çakmak yakma; gaz kaçağı tehlikesi var.\n• Gereksiz hareket etme; toz ve enkaz hareketini tetikleyebilir.\n• Boru veya duvara vur — kurtarma ekipleri bu sesi duyabilir.\n• Bu uygulamadaki Acil Düdük özelliğini kullan.\n• Mümkünse ışığını yak ya da arama yaparak konumunu ver.\n• Su ve enerji tasarrufu yap; yardım gelene kadar dayanman gerekebilir.</string>
+    <string name="info_header_kit">🎒 Acil Durum Çantası</string>
+    <string name="info_content_kit">Çantanda mutlaka şunlar olsun:\n\n• En az 3 günlük su (kişi başı 3 litre/gün)\n• Uzun ömürlü gıda (konserve, enerji barı)\n• El feneri + yedek pil\n• Pilli veya el çevirmeli radyo\n• İlk yardım kiti ve kişisel ilaçlar\n• Düdük (bu uygulama alternatif olarak kullanılabilir)\n• Nüfus cüzdanı / pasaport fotokopisi\n• Nakit para (ATM\'ler çalışmayabilir)\n• Termal battaniye\n• Şarj edilmiş powerbank</string>
+
+    <!-- ── Ayarlar Ekranı ── -->
+    <string name="settings_toolbar_title">Ayarlar</string>
+    <string name="settings_section_city">Şehrim</string>
+    <string name="settings_city_hint">Şehir adı girin</string>
+    <string name="settings_city_save_button">Kaydet</string>
+    <string name="settings_city_empty_error">Lütfen bir şehir adı girin</string>
+    <string name="settings_city_saved">"%1$s" kaydedildi</string>
+    <string name="settings_current_city">Mevcut şehir: %1$s</string>
+    <string name="settings_section_notifications">Bildirimler</string>
+    <string name="settings_notifications_label">Deprem bildirimleri</string>
+    <string name="settings_magnitude_label">Bildirim eşiği</string>
+    <string name="settings_magnitude_value">%1$.1f ve üzeri</string>
+
+    <!-- ── Genel ── -->
+    <string name="error_generic">Bir hata oluştu. Lütfen tekrar deneyin.</string>
+    <string name="loading">Yükleniyor…</string>
 </resources>
