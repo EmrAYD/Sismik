@@ -16,7 +16,11 @@ import java.util.TimeZone
  * diğerlerini silmen gerekmez, zarar vermezler.
  */
 
-private val READABLE_OUTPUT_FORMAT = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale("tr"))
+private val ISTANBUL_TZ = TimeZone.getTimeZone("Europe/Istanbul")
+
+private val READABLE_OUTPUT_FORMAT = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale("tr")).apply {
+    timeZone = ISTANBUL_TZ
+}
 
 fun Long.toReadableDate(): String {
     if (this <= 0L) return "-"
@@ -38,9 +42,8 @@ private val POSSIBLE_DATE_FORMATS = listOf(
 fun String.formatReadableDate(): String {
     for (pattern in POSSIBLE_DATE_FORMATS) {
         try {
-            val sdf = SimpleDateFormat(pattern, Locale.getDefault())
-            if (pattern.endsWith("'Z'")) {
-                sdf.timeZone = TimeZone.getTimeZone("UTC")
+            val sdf = SimpleDateFormat(pattern, Locale.getDefault()).apply {
+                timeZone = ISTANBUL_TZ
             }
             val date = sdf.parse(this) ?: continue
             return READABLE_OUTPUT_FORMAT.format(date)
