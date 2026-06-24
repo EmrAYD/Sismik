@@ -2,17 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/myCityFragment"
+        android:icon="@drawable/ic_city"
         android:title="@string/nav_my_city" />
     <item
         android:id="@+id/feedFragment"
+        android:icon="@drawable/ic_feed"
         android:title="@string/nav_feed" />
     <item
         android:id="@+id/infoFragment"
+        android:icon="@drawable/ic_info"
         android:title="@string/nav_info" />
     <item
         android:id="@+id/whistleFragment"
+        android:icon="@drawable/ic_whistle"
         android:title="@string/nav_whistle" />
     <item
         android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
         android:title="@string/nav_settings" />
 </menu>
