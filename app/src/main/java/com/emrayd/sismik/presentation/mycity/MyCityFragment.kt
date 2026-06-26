@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -38,6 +39,7 @@ class MyCityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupClickListeners()
+        setupSwipeRefresh()
         observeUiState()
     }
 
@@ -64,6 +66,15 @@ class MyCityFragment : Fragment() {
         }
     }
 
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshLayout.setColorSchemeColors(
+            ContextCompat.getColor(requireContext(), R.color.sismik_primary)
+        )
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
+    }
+
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -82,6 +93,13 @@ class MyCityFragment : Fragment() {
                     } ?: run {
                         binding.textError.visibility = View.GONE
                     }
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isRefreshing.collect { isRefreshing ->
+                    binding.swipeRefreshLayout.isRefreshing = isRefreshing
                 }
             }
         }

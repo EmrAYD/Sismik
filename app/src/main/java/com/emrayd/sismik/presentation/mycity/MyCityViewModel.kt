@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emrayd.sismik.data.local.datastore.SettingsDataStore
 import com.emrayd.sismik.domain.model.Earthquake
+import com.emrayd.sismik.domain.repository.EarthquakeRepository
 import com.emrayd.sismik.domain.usecase.GetLiveEarthquakesUseCase
 import com.emrayd.sismik.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 data class MyCityUiState(
     val userCity: String = "",
@@ -25,9 +27,13 @@ data class MyCityUiState(
 @HiltViewModel
 class MyCityViewModel @Inject constructor(
     getLiveEarthquakesUseCase: GetLiveEarthquakesUseCase,
-    private val settingsDataStore: SettingsDataStore
+    private val settingsDataStore: SettingsDataStore,
+    private val repository: EarthquakeRepository
 ) : ViewModel() {
 
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
     val uiState: StateFlow<MyCityUiState> = combine(
         settingsDataStore.userCityFlow,
         getLiveEarthquakesUseCase()
@@ -58,4 +64,14 @@ class MyCityViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = MyCityUiState(isLoading = true)
     )
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            repository.refreshEarthquakes()
+            _isRefreshing.value = false
+            // refreshEarthquakes() Room'a yazıyor → dao.observeAll() Flow'u
+            // otomatik tetikleniyor → uiState güncelleniyor
+        }
+    }
 }
