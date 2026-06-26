@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
@@ -44,6 +45,13 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            if (navController.currentDestination?.id == R.id.detailFragment) {
+                navController.popBackStack()
+            }
+            NavigationUI.onNavDestinationSelected(item, navController)
+        }
     }
 
     private fun requestNotificationPermissionIfNeeded() {
