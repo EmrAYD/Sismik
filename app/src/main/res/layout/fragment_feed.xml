@@ -40,41 +40,50 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupSort"
+    <HorizontalScrollView
+        android:id="@+id/scrollChips"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
+        android:scrollbars="none"
         android:layout_marginTop="8dp"
-        app:singleSelection="true"
-        app:selectionRequired="true"
         app:layout_constraintTop_toBottomOf="@id/layoutSearchCity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipDateDesc"
-            style="@style/Widget.Material3.Chip.Filter"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupSort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/feed_sort_date_desc"
-            android:checked="true" />
+            android:paddingHorizontal="12dp"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipMagnitudeDesc"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/feed_sort_magnitude_desc" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDateDesc"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_sort_date_desc"
+                android:checked="true" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipMagnitudeAsc"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/feed_sort_magnitude_asc" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMagnitudeDesc"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_sort_magnitude_desc" />
 
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMagnitudeAsc"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_sort_magnitude_asc" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/textError"
@@ -84,7 +93,7 @@
         android:textColor="#F44336"
         android:textSize="13sp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/chipGroupSort"
+        app:layout_constraintTop_toBottomOf="@id/scrollChips"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -98,7 +107,7 @@
         android:gravity="center"
         android:padding="32dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/chipGroupSort"
+        app:layout_constraintTop_toBottomOf="@id/scrollChips"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -108,20 +117,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/chipGroupSort"
+        app:layout_constraintTop_toBottomOf="@id/scrollChips"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingVertical="6dp"
-        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/textError"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="6dp"
+            android:clipToPadding="false" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
