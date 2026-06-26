@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.emrayd.sismik.R
 import com.emrayd.sismik.databinding.FragmentSettingsBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,51 +43,18 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupCityInput() {
-        // Şehir listesini resources'tan al ve adapter'a ver
-        val cities = resources.getStringArray(R.array.turkish_cities).toList()
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            cities
-        )
-        binding.editCity.setAdapter(adapter)
+        val cities = resources.getStringArray(R.array.turkish_cities)
 
-        // Kutuya tıklanınca metni temizle → tüm şehir listesi açılır
+        // Kutuya tıklanınca AlertDialog aç
         binding.editCity.setOnClickListener {
-            binding.editCity.text.clear()
-            binding.editCity.showDropDown()
+            showCityPickerDialog(cities)
         }
 
-        // Odaklanınca da aynı davranış (klavyeyle sekme geçişi için)
-        binding.editCity.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.editCity.text.clear()
-                binding.editCity.showDropDown()
-            }
-        }
-
-        // Kullanıcı listeden bir şehir seçtiğinde otomatik kaydet
-        binding.editCity.setOnItemClickListener { _, _, _, _ ->
-            val selected = binding.editCity.text.toString()
-            viewModel.saveCity(selected)
-            Toast.makeText(
-                requireContext(),
-                getString(R.string.settings_city_saved, selected),
-                Toast.LENGTH_SHORT
-            ).show()
-            binding.editCity.clearFocus()
-        }
-
-        // Kaydet butonuyla da manuel kayıt mümkün kalsın
+        // Kaydet butonu: kutuda yazıyorsa kaydet
         binding.buttonSaveCity.setOnClickListener {
             val city = binding.editCity.text.toString().trim()
             if (city.isBlank()) {
                 binding.editCity.error = getString(R.string.settings_city_empty_error)
-                return@setOnClickListener
-            }
-            // Girilen şehrin listede olup olmadığını kontrol et
-            if (!cities.any { it.equals(city, ignoreCase = true) }) {
-                binding.editCity.error = "Lütfen listeden bir şehir seçin"
                 return@setOnClickListener
             }
             viewModel.saveCity(city)
@@ -95,8 +63,24 @@ class SettingsFragment : Fragment() {
                 getString(R.string.settings_city_saved, city),
                 Toast.LENGTH_SHORT
             ).show()
-            binding.editCity.clearFocus()
         }
+    }
+
+    private fun showCityPickerDialog(cities: Array<String>) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Şehir Seç")
+            .setItems(cities) { _, index ->
+                val selected = cities[index]
+                binding.editCity.setText(selected)
+                viewModel.saveCity(selected)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.settings_city_saved, selected),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .setNegativeButton("İptal", null)
+            .show()
     }
 
     private fun setupMagnitudeSeekBar() {
@@ -154,34 +138,5 @@ class SettingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    private inner class CityAdapter(
-        context: android.content.Context,
-        private val allCities: List<String>
-    ) : ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, allCities.toMutableList()) {
-
-        override fun getFilter() = object : android.widget.Filter() {
-
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val results = FilterResults()
-                // Metin boşsa tüm listeyi göster, değilse filtrele
-                val filtered = if (constraint.isNullOrBlank()) {
-                    allCities
-                } else {
-                    allCities.filter { it.contains(constraint, ignoreCase = true) }
-                }
-                results.values = filtered
-                results.count = filtered.size
-                return results
-            }
-
-            @Suppress("UNCHECKED_CAST")
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                clear()
-                addAll(results?.values as? List<String> ?: emptyList())
-                if ((results?.count ?: 0) > 0) notifyDataSetChanged()
-                else notifyDataSetInvalidated()
-            }
-        }
     }
 }
