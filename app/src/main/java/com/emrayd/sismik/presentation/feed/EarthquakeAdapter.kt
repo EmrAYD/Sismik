@@ -33,17 +33,28 @@ class EarthquakeAdapter(
                 textMagnitude.text = String.format("%.1f", earthquake.magnitude)
                 magnitudeBadge.setCardBackgroundColor(magnitudeToColor(earthquake.magnitude))
                 textTitle.text = earthquake.title
-                textClosestCity.text = root.context.getString(
-                    com.emrayd.sismik.R.string.format_closest_city,
-                    earthquake.closestCity,
-                    earthquake.closestCityDistanceKm.toInt()
-                )
                 textDepth.text = root.context.getString(
-                    com.emrayd.sismik.R.string.format_depth,
-                    earthquake.depth
+                    com.emrayd.sismik.R.string.format_depth, earthquake.depth
                 )
                 textDateTime.text = earthquake.epochSeconds.toReadableDate()
-                root.setOnClickListener { onItemClick(earthquake) }
+
+                // Etkilenen iller: merkez il + yakın iller (merkez zaten listede yoksa ekle)
+                val affectedCities = buildList {
+                    if (earthquake.epicenterCity.isNotBlank()) {
+                        add(earthquake.epicenterCity)
+                    }
+                    earthquake.closestCities
+                        .filter { !it.equals(earthquake.epicenterCity, ignoreCase = true) }
+                        .take(3)  // merkez + 3 yakın il, toplam max 4 il göster
+                        .forEach { add(it) }
+                }
+
+                val citiesText = affectedCities.joinToString(", ")
+                textClosestCity.text = root.context.getString(
+                    com.emrayd.sismik.R.string.format_affected_cities,
+                    earthquake.epicenterCity.ifBlank { "?" },
+                    affectedCities.drop(1).joinToString(", ").ifBlank { "-" }
+                )
             }
         }
     }

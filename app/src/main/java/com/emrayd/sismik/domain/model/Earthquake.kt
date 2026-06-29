@@ -21,6 +21,7 @@ data class Earthquake(
     // filtreleme yapılır; böylece sadece "en yakın şehir" değil, yakın çevresindeki
     // şehirler de kapsanır.
     val closestCities: List<String>,
+    val epicenterCity: String,
     val dateTime: String,
     val epochSeconds: Long,
     val provider: String

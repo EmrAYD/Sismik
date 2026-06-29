@@ -38,12 +38,17 @@ data class GeoJsonDto(
 
 data class LocationPropertiesDto(
     @SerializedName("closestCity") val closestCity: ClosestCityDto? = null,
-    @SerializedName("closestCities") val closestCities: List<ClosestCityDto>? = null
+    @SerializedName("closestCities") val closestCities: List<ClosestCityDto>? = null,
+    @SerializedName("epiCenter") val epiCenter: EpiCenterDto? = null
 )
 
 data class ClosestCityDto(
     val name: String? = null,
     val distance: Double? = null   // METRE cinsinden — mapper'da km'ye çevriliyor
+)
+
+data class EpiCenterDto(
+    val name: String? = null
 )
 
 /**
@@ -66,6 +71,7 @@ fun EarthquakeItemDto.toEntity(): EarthquakeEntity {
         closestCity = locationProperties?.closestCity?.name ?: "-",
         closestCityDistanceKm = distanceKm,
         closestCities = cityNames,
+        epicenterCity = locationProperties?.epiCenter?.name ?: "",
         dateTime = dateTime ?: "", epochSeconds = createdAt ?: 0L,
         provider = provider ?: "-"
     )

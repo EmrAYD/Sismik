@@ -48,7 +48,11 @@ class MyCityViewModel @Inject constructor(
             emptyList()
         } else {
             allEarthquakes.filter { earthquake ->
-                earthquake.closestCities.any { it.equals(city, ignoreCase = true) } ||
+                // 1. Depremin merkez ili seçilen şehirse göster (en güvenilir)
+                earthquake.epicenterCity.equals(city, ignoreCase = true) ||
+                        // 2. En yakın 5 şehir arasındaysa göster
+                        earthquake.closestCities.any { it.equals(city, ignoreCase = true) } ||
+                        // 3. En yakın tek şehirse göster
                         earthquake.closestCity.equals(city, ignoreCase = true)
             }
         }

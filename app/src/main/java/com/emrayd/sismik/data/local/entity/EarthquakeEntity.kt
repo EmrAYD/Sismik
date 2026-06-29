@@ -19,6 +19,7 @@ data class EarthquakeEntity(
     val closestCity: String,
     val closestCityDistanceKm: Double,
     val closestCities: List<String>,   // StringListConverter ile JSON'a çevrilir
+    val epicenterCity: String,
     val dateTime: String,
     val epochSeconds: Long,
     val provider: String,
@@ -38,6 +39,7 @@ fun EarthquakeEntity.toDomain(): Earthquake = Earthquake(
     closestCity = closestCity,
     closestCityDistanceKm = closestCityDistanceKm,
     closestCities = closestCities,
+    epicenterCity = epicenterCity,
     dateTime = dateTime,
     epochSeconds = epochSeconds,
     provider = provider

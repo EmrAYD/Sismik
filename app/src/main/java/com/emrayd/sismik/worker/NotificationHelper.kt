@@ -44,7 +44,7 @@ object NotificationHelper {
         )
 
         val notification = NotificationCompat.Builder(context, Constants.NOTIFICATION_CHANNEL_ID)
-            //.setSmallIcon(R.drawable.ic_whistle)
+            .setSmallIcon(R.drawable.ic_whistle)
             .setContentTitle("🔴 Deprem: $title")
             .setContentText("Büyüklük: $magnitude")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

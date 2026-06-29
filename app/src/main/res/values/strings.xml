@@ -12,6 +12,7 @@
     <string name="format_closest_city">%1$s (%2$d km)</string>
     <string name="format_depth">Derinlik: %1$.1f km</string>
     <string name="format_coordinates">%1$.4f° K, %2$.4f° D</string>
+    <string name="format_affected_cities">📍 %1$s | %2$s</string>
 
     <!-- ── Şehrim Ekranı ── -->
     <string name="my_city_no_city_title">Henüz şehrin seçilmedi</string>
@@ -50,11 +51,11 @@
     <string name="info_header_before">📦 Depremden Önce</string>
     <string name="info_content_before">• Acil durum çantanızı hazırlayın (su, gıda, ilaç, fener, pil, düdük, ilk yardım kiti, nüfus cüzdanı fotokopisi).\n• Ev/iş yeri için güvenli toplanma noktası belirleyin ve aile üyeleriyle paylaşın.\n• Doğal gaz, su ve elektrik vanalarının yerini öğrenin; nasıl kapanacağını bilin.\n• Ağır mobilyaları duvara sabitleyin; yüksekteki nesneleri aşağı alın.\n• Yapı güvenliği konusunda şüpheleriniz varsa uzman görüşü alın.</string>
     <string name="info_header_during">🪨 Deprem Sırasında</string>
-    <string name="info_content_during">• ÇÖK – KAPAN – TUTUN: yere çök, sağlam bir masanın altına gir, baş ve boynunu kolla koru, masaya sıkıca tutun.\n• Masa yoksa bir iç duvara yakın, dizlerin üstünde eğil ve başını kolla kapat.\n• Asansöre kesinlikle binme. Merdivenlerden da koşma.\n• Pencere, dış duvar ve devrilecek eşyalardan uzak dur.\n• Bina içindeysen dışarı çıkmaya çalışma; sarsıntı bitene kadar yerinizde kal.\n• Dışarıdaysan binalardan, elektrik direklerinden ve ağaçlardan uzak açık alana git.</string>
+    <string name="info_content_during">• ÇÖK – KAPAN – TUTUN: yere çök, sağlam bir masanın altına gir, baş ve boynunu kollarınla koru, masaya sıkıca tutun.\n• Masa yoksa bir iç duvara yakın, dizlerin üstünde eğil ve başını kollarınla kapat.\n• Asansöre kesinlikle binme. Merdivenlerden de koşma.\n• Pencere, dış duvar ve devrilecek eşyalardan uzak dur.\n• Bina içindeysen dışarı çıkmaya çalışma; sarsıntı bitene kadar yerinde kal.\n• Dışarıdaysan binalardan, elektrik direklerinden ve ağaçlardan uzak açık alana git.</string>
     <string name="info_header_after">✅ Depremden Sonra</string>
     <string name="info_content_after">• Artçı sarsıntılara hazırlıklı ol; tekrar sarsıntı olabilir.\n• Binayı terk etmeden önce gaz kaçağı olup olmadığını kontrol et (koku varsa priz/anahtar kullanma).\n• Çatlak veya hasar varsa binaya girme; yetkili onay almadan içeri girme.\n• Radyo veya resmi kaynaklardan bilgi takip et.\n• Gereksiz telefon trafiğini artırmamak için kısa mesaj tercih et.\n• Yaralılara yardım et; kendi güvenliğinden emin olduktan sonra yardım talebi ilet.</string>
     <string name="info_header_trapped">🆘 Enkaz Altındaysan</string>
-    <string name="info_content_trapped">• Panikle. Derin nefes al, sakin kal.\n• Kibrit veya çakmak yakma; gaz kaçağı tehlikesi var.\n• Gereksiz hareket etme; toz ve enkaz hareketini tetikleyebilir.\n• Boru veya duvara vur — kurtarma ekipleri bu sesi duyabilir.\n• Bu uygulamadaki Acil Düdük özelliğini kullan.\n• Mümkünse ışığını yak ya da arama yaparak konumunu ver.\n• Su ve enerji tasarrufu yap; yardım gelene kadar dayanman gerekebilir.</string>
+    <string name="info_content_trapped">• Panikleme. Derin nefes al, sakin kal.\n• Kibrit veya çakmak yakma; gaz kaçağı tehlikesi var.\n• Gereksiz hareket etme; toz ve enkaz hareketini tetikleyebilir.\n• Boru veya duvara vur — kurtarma ekipleri bu sesi duyabilir.\n• Bu uygulamadaki Acil Düdük özelliğini kullan.\n• Mümkünse ışığını yak ya da arama yaparak konumunu ver.\n• Su ve enerji tasarrufu yap; yardım gelene kadar dayanman gerekebilir.</string>
     <string name="info_header_kit">🎒 Acil Durum Çantası</string>
     <string name="info_content_kit">Çantanda mutlaka şunlar olsun:\n\n• En az 3 günlük su (kişi başı 3 litre/gün)\n• Uzun ömürlü gıda (konserve, enerji barı)\n• El feneri + yedek pil\n• Pilli veya el çevirmeli radyo\n• İlk yardım kiti ve kişisel ilaçlar\n• Düdük (bu uygulama alternatif olarak kullanılabilir)\n• Nüfus cüzdanı / pasaport fotokopisi\n• Nakit para (ATM\'ler çalışmayabilir)\n• Termal battaniye\n• Şarj edilmiş powerbank</string>
 
@@ -75,7 +76,7 @@
     <string name="error_generic">Bir hata oluştu. Lütfen tekrar deneyin.</string>
     <string name="loading">Yükleniyor…</string>
 
-    <!-- 81 il listesi - AutoCompleteTextView için -->
+    <!-- 81 il listesi -->
     <string-array name="turkish_cities">
         <item>Adana</item>
         <item>Adıyaman</item>
