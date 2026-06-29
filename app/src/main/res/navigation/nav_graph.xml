@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/myCityFragment">
+
+    <fragment
+        android:id="@+id/myCityFragment"
+        android:name="com.emrayd.sismik.presentation.mycity.MyCityFragment"
+        android:label="@string/nav_my_city"
+        tools:layout="@layout/fragment_my_city">
+        <action
+            android:id="@+id/action_myCityFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.emrayd.sismik.presentation.feed.FeedFragment"
+        android:label="@string/nav_feed"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_feedFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.emrayd.sismik.presentation.detail.DetailFragment"
+        android:label="@string/detail_toolbar_title"
+        tools:layout="@layout/fragment_detail">
+        <argument android:name="earthquakeId" app:argType="string" />
+        <argument android:name="title" app:argType="string" />
+        <argument android:name="magnitude" app:argType="float" />
+        <argument android:name="depth" app:argType="float" />
+        <argument android:name="latitude" app:argType="float" />
+        <argument android:name="longitude" app:argType="float" />
+        <argument android:name="closestCity" app:argType="string" />
+        <argument android:name="distanceKm" app:argType="float" />
+        <argument android:name="epochSeconds" app:argType="long" />
+        <argument android:name="epicenterCity" app:argType="string" />
+        <argument android:name="affectedCities" app:argType="string" />
+    </fragment>
+
+</navigation>
