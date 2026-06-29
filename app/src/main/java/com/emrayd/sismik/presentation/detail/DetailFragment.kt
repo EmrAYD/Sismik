@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.emrayd.sismik.R
 import com.emrayd.sismik.databinding.FragmentDetailBinding
@@ -36,6 +37,11 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync(this)
         bindEarthquakeDetails()
+
+        // Geri butonu
+        binding.buttonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onMapReady(map: GoogleMap) {
