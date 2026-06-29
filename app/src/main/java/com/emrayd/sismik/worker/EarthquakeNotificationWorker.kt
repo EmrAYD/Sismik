@@ -25,10 +25,22 @@ class EarthquakeNotificationWorker @AssistedInject constructor(
 
             val minMagnitude = settingsDataStore.getMinMagnitude().toDouble()
             val lastNotifiedId = settingsDataStore.getLastNotifiedId()
+            val userCity = settingsDataStore.getUserCity()
 
             val newEarthquake = earthquakes
                 .sortedByDescending { it.epochSeconds }
-                .firstOrNull { it.magnitude >= minMagnitude && it.id != lastNotifiedId }
+                .firstOrNull { earthquake ->
+                    // Büyüklük eşiğini geç
+                    earthquake.magnitude >= minMagnitude &&
+                            // Daha önce bildirilmemiş olsun
+                            earthquake.id != lastNotifiedId &&
+                            // Şehir seçilmemişse tüm depremleri bildir,
+                            // seçilmişse sadece o şehri etkileyen depremleri bildir
+                            (userCity.isBlank() ||
+                                    earthquake.epicenterCity.equals(userCity, ignoreCase = true) ||
+                                    earthquake.closestCities.any { it.equals(userCity, ignoreCase = true) } ||
+                                    earthquake.closestCity.equals(userCity, ignoreCase = true))
+                }
 
             if (newEarthquake != null) {
                 NotificationHelper.showEarthquakeNotification(
