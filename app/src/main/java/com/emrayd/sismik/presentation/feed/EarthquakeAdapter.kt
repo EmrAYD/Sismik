@@ -38,6 +38,7 @@ class EarthquakeAdapter(
                 )
                 textDateTime.text = earthquake.epochSeconds.toReadableDate()
 
+                root.setOnClickListener { onItemClick(earthquake) }
                 // Etkilenen iller: merkez il + yakın iller (merkez zaten listede yoksa ekle)
                 val affectedCities = buildList {
                     if (earthquake.epicenterCity.isNotBlank()) {
@@ -49,7 +50,6 @@ class EarthquakeAdapter(
                         .forEach { add(it) }
                 }
 
-                val citiesText = affectedCities.joinToString(", ")
                 textClosestCity.text = root.context.getString(
                     com.emrayd.sismik.R.string.format_affected_cities,
                     earthquake.epicenterCity.ifBlank { "?" },
