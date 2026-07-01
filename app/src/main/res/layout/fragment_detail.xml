@@ -7,17 +7,17 @@
     android:layout_height="match_parent"
     android:background="@color/sismik_background">
 
+    <!-- Haritanın üstüne yüzen geri butonu -->
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Haritanın üstüne yüzen geri butonu -->
     <androidx.cardview.widget.CardView
         android:id="@+id/buttonBack"
         android:layout_width="40dp"
@@ -37,6 +37,7 @@
             android:contentDescription="Geri" />
 
     </androidx.cardview.widget.CardView>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
@@ -44,9 +45,9 @@
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/mapView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mapView">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,17 +115,36 @@
                 android:textColor="@color/sismik_on_surface"
                 android:textSize="15sp" />
 
+            <!-- Deprem Merkezi -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.08"
-                android:text="@string/detail_label_closest_city"
+                android:text="@string/detail_label_epicenter"
                 android:textAllCaps="true"
                 android:textColor="@color/sismik_on_surface_variant"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/textClosestCityValue"
+                android:id="@+id/textEpicenterValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/sismik_on_surface"
+                android:textSize="15sp" />
+
+            <!-- Etkilenen İller -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.08"
+                android:text="@string/detail_label_affected_cities"
+                android:textAllCaps="true"
+                android:textColor="@color/sismik_on_surface_variant"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textAffectedCitiesValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

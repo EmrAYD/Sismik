@@ -34,7 +34,8 @@
     <string name="detail_toolbar_title">Deprem Detayı</string>
     <string name="detail_label_magnitude">Büyüklük</string>
     <string name="detail_label_depth">Derinlik</string>
-    <string name="detail_label_closest_city">En Yakın Şehir</string>
+    <string name="detail_label_epicenter">Deprem Merkezi</string>
+    <string name="detail_label_affected_cities">Etkilenen İller</string>
     <string name="detail_label_datetime">Tarih / Saat</string>
     <string name="detail_label_coordinates">Koordinatlar</string>
 

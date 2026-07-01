@@ -65,13 +65,16 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
             textMagnitudeValue.text = String.format("%.1f", args.magnitude)
             magnitudeBadge.setCardBackgroundColor(magnitudeToColor(args.magnitude))
             textDepthValue.text = getString(R.string.format_depth, args.depth.toDouble())
-            textClosestCityValue.text = getString(
-                R.string.format_closest_city, args.closestCity, args.distanceKm.toInt()
-            )
             textDateTimeValue.text = args.epochSeconds.toReadableDate()
             textCoordinatesValue.text = getString(
                 R.string.format_coordinates, args.latitude, args.longitude
             )
+
+            // Deprem merkezi
+            textEpicenterValue.text = args.epicenterCity.ifBlank { "-" }
+
+            // Etkilenen iller
+            textAffectedCitiesValue.text = args.affectedCities.ifBlank { "-" }
         }
     }
 

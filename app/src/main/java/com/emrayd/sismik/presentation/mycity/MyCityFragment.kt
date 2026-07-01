@@ -139,7 +139,9 @@ class MyCityFragment : Fragment() {
             longitude = earthquake.longitude.toFloat(),
             closestCity = earthquake.closestCity,
             distanceKm = earthquake.closestCityDistanceKm.toFloat(),
-            epochSeconds = earthquake.epochSeconds
+            epochSeconds = earthquake.epochSeconds,
+            epicenterCity = earthquake.epicenterCity,
+            affectedCities = earthquake.closestCities.take(3).joinToString(", ")
         )
         findNavController().navigate(action)
     }
