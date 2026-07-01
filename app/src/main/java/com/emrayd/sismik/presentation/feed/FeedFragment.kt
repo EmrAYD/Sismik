@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.emrayd.sismik.R
 import com.emrayd.sismik.databinding.FragmentFeedBinding
 import com.emrayd.sismik.domain.model.Earthquake
+import com.emrayd.sismik.domain.usecase.FilterEarthquakesUseCase
 import com.emrayd.sismik.domain.usecase.FilterEarthquakesUseCase.SortType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,6 +30,10 @@ class FeedFragment : Fragment() {
 
     private val viewModel: FeedViewModel by viewModels()
     private lateinit var adapter: EarthquakeAdapter
+
+    // Önceki sıralama ve arama değerlerini takip etmek için
+    private var lastSortType: FilterEarthquakesUseCase.SortType? = null
+    private var lastSearchQuery: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -89,15 +94,21 @@ class FeedFragment : Fragment() {
     private fun observeUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-
                 viewModel.uiState.collect { state ->
                     binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
 
                     if (state.earthquakes.isEmpty() && !state.isLoading) {
                         showEmptyState()
                     } else {
-                        showEarthquakeList(state.earthquakes)
+                        // Sıralama veya arama değiştiyse başa dön
+                        val shouldScrollToTop = lastSortType != null &&
+                                (lastSortType != state.sortType || lastSearchQuery != state.searchQuery)
+
+                        showEarthquakeList(state.earthquakes, shouldScrollToTop)
                     }
+
+                    lastSortType = state.sortType
+                    lastSearchQuery = state.searchQuery
 
                     state.errorMessage?.let { message ->
                         binding.textError.text = message
@@ -106,9 +117,9 @@ class FeedFragment : Fragment() {
                         binding.textError.visibility = View.GONE
                     }
                 }
-
             }
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.isRefreshing.collect { isRefreshing ->
@@ -123,10 +134,15 @@ class FeedFragment : Fragment() {
         binding.textEmptyState.visibility = View.VISIBLE
     }
 
-    private fun showEarthquakeList(earthquakes: List<Earthquake>) {
+    private fun showEarthquakeList(earthquakes: List<Earthquake>, scrollToTop: Boolean = false) {
         binding.textEmptyState.visibility = View.GONE
         binding.recyclerView.visibility = View.VISIBLE
-        adapter.submitList(earthquakes)
+        adapter.submitList(earthquakes) {
+            // submitList tamamlandıktan sonra çalışır (diff hesabı bitti)
+            if (scrollToTop) {
+                binding.recyclerView.scrollToPosition(0)
+            }
+        }
     }
 
     private fun navigateToDetail(earthquake: Earthquake) {
@@ -139,7 +155,9 @@ class FeedFragment : Fragment() {
             longitude = earthquake.longitude.toFloat(),
             closestCity = earthquake.closestCity,
             distanceKm = earthquake.closestCityDistanceKm.toFloat(),
-            epochSeconds = earthquake.epochSeconds
+            epochSeconds = earthquake.epochSeconds,
+            epicenterCity = earthquake.epicenterCity,
+            affectedCities = earthquake.closestCities.take(3).joinToString(", ")
         )
         findNavController().navigate(action)
     }
