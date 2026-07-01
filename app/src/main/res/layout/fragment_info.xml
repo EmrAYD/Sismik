@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/sismik_background">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/sismik_primary"
+        app:title="@string/info_toolbar_title"
+        app:titleTextColor="@color/white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Depremden Önce -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/headerBefore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/info_header_before"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/sismik_on_surface" />
+                        <ImageView
+                            android:id="@+id/chevronBefore"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/sismik_on_surface_variant" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/contentBefore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/info_content_before"
+                        android:textSize="14sp"
+                        android:textColor="@color/sismik_on_surface"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Deprem Sırasında -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/headerDuring"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/info_header_during"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/sismik_on_surface" />
+                        <ImageView
+                            android:id="@+id/chevronDuring"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/sismik_on_surface_variant" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/contentDuring"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/info_content_during"
+                        android:textSize="14sp"
+                        android:textColor="@color/sismik_on_surface"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Depremden Sonra -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/headerAfter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/info_header_after"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/sismik_on_surface" />
+                        <ImageView
+                            android:id="@+id/chevronAfter"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/sismik_on_surface_variant" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/contentAfter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/info_content_after"
+                        android:textSize="14sp"
+                        android:textColor="@color/sismik_on_surface"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Enkaz Altındaysan -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/headerTrapped"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/info_header_trapped"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/sismik_on_surface" />
+                        <ImageView
+                            android:id="@+id/chevronTrapped"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/sismik_on_surface_variant" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/contentTrapped"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/info_content_trapped"
+                        android:textSize="14sp"
+                        android:textColor="@color/sismik_on_surface"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Acil Durum Çantası -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/headerKit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/info_header_kit"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/sismik_on_surface" />
+                        <ImageView
+                            android:id="@+id/chevronKit"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_chevron_down"
+                            app:tint="@color/sismik_on_surface_variant" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/contentKit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/info_content_kit"
+                        android:textSize="14sp"
+                        android:textColor="@color/sismik_on_surface"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="16dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
