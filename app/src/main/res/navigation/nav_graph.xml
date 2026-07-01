@@ -34,6 +34,24 @@
     </fragment>
 
     <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.emrayd.sismik.presentation.info.InfoFragment"
+        android:label="@string/nav_info"
+        tools:layout="@layout/fragment_info" />
+
+    <fragment
+        android:id="@+id/whistleFragment"
+        android:name="com.emrayd.sismik.presentation.whistle.WhistleFragment"
+        android:label="@string/nav_whistle"
+        tools:layout="@layout/fragment_whistle" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.emrayd.sismik.presentation.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
         android:id="@+id/detailFragment"
         android:name="com.emrayd.sismik.presentation.detail.DetailFragment"
         android:label="@string/detail_toolbar_title"
